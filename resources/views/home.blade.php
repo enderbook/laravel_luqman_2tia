@@ -156,7 +156,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Form Pertanyaan</h5>
-                        @if ($errors->any())
+                            @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
                                         @foreach ($errors->all() as $error)
@@ -165,8 +165,14 @@
                                     </ul>
                                 </div>
                             @endif
-                        <form action="{{ route('question.store') }}" method="POST">
 
+                            @if (session('info'))
+                                <div class="alert alert-info">
+                                    {!! session('info') !!}
+                                </div>
+                            @endif
+
+                        <form action="{{ route('question.store') }}" method="POST">
 
                             @csrf
                             <div class="mb-3">

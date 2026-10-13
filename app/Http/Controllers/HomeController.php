@@ -19,6 +19,12 @@ class HomeController extends Controller
         return view('home', $data);
     }
 
+    public function betul()
+    {
+
+        return redirect('/home')->with('info', 'data berhasil dimasukkan');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

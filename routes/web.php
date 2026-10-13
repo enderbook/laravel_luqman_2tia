@@ -11,6 +11,8 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'index']);
 
+Route::get('/betul', [HomeController::class, 'betul']);
+
 Route::post('question/store', [QuestionController::class, 'store'])
 		->name('question.store');
 
