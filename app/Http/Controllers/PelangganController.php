@@ -13,7 +13,8 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        return view('admin.pelanggan.create');
+        $data['dataPelanggan'] = Pelanggan::all();
+		return view('admin.pelanggan.index',$data);
     }
 
     /**
