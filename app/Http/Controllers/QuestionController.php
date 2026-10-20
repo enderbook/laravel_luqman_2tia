@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 class QuestionController extends Controller
 {
     /**
@@ -13,7 +10,6 @@ class QuestionController extends Controller
     {
         //
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -21,25 +17,35 @@ class QuestionController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
-
-
-        $data['nama']       = $request->nama;
-        $data['email']      = $request->email;
-        $data['pertanyaan'] = $request->pertanyaan;
-
-        // return redirect('/home')->with('info', 'data berhasil dimasukkan');
-
-        return view('home-question-respon', $data);
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required|email',
+            'pertanyaan' => 'required'
+        ]);
+        return redirect()->back()->with([
+            'success' => true,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'pertanyaan' => $request->pertanyaan
+        ]);
     }
-
+    public function response()
+    {
+        // Cegah akses langsung jika tidak ada session data (misal saat user iseng reload halaman ini)
+        if (!session()->has('success')) {
+            return redirect()->back();
+        }
+        return view('home-question-respon', [
+            'nama' => session('nama'),
+            'email' => session('email'),
+            'pertanyaan' => session('pertanyaan')
+        ]);
+    }
     /**
      * Display the specified resource.
      */
@@ -47,7 +53,6 @@ class QuestionController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -55,7 +60,6 @@ class QuestionController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -63,7 +67,6 @@ class QuestionController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      */
