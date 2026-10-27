@@ -292,41 +292,78 @@
             </div>
         </div>
 
+
         <div class="row">
             <div class="col-12 mb-4">
                 <div class="card border-0 shadow components-section">
                     <div class="card-body">
-                        <form action="{{route('pelanggan.store')}}" method="POST">
+
+                        <form action="{{ route('pelanggan.store') }}"
+                            method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+
                             <div class="row mb-4">
+
                                 <div class="col-lg-4 col-sm-6">
                                     <!-- First Name -->
                                     <div class="mb-3">
-                                        <label for="first_name" class="form-label">First name</label>
-                                        <input type="text" id="first_name" name="first_name" class="form-control" required>
+                                        <label for="first_name" class="form-label">
+                                            First name
+                                        </label>
+                                        <input type="text"
+                                            id="first_name"
+                                            name="first_name"
+                                            class="form-control"
+                                            value="{{ old('first_name') }}"
+                                            required>
                                     </div>
 
                                     <!-- Last Name -->
                                     <div class="mb-3">
-                                        <label for="last_name" class="form-label">Last name</label>
-                                        <input type="text" id="last_name" name="last_name" class="form-control" required>
+                                        <label for="last_name" class="form-label">
+                                            Last name
+                                        </label>
+                                        <input type="text"
+                                            id="last_name"
+                                            name="last_name"
+                                            class="form-control"
+                                            value="{{ old('last_name') }}"
+                                            required>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4 col-sm-6">
                                     <!-- Birthday -->
                                     <div class="mb-3">
-                                        <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="date" id="birthday" name="birthday" class="form-control">
+                                        <label for="birthday" class="form-label">
+                                            Birthday
+                                        </label>
+                                        <input type="date"
+                                            id="birthday"
+                                            name="birthday"
+                                            class="form-control"
+                                            value="{{ old('birthday') }}">
                                     </div>
 
                                     <!-- Gender -->
                                     <div class="mb-3">
-                                        <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select">
+                                        <label for="gender" class="form-label">
+                                            Gender
+                                        </label>
+                                        <select id="gender"
+                                                name="gender"
+                                                class="form-select">
                                             <option value="">-- Pilih --</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
+                                            <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>
+                                                Male
+                                            </option>
+                                            <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>
+                                                Female
+                                            </option>
+                                            <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>
+                                                Other
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -334,29 +371,73 @@
                                 <div class="col-lg-4 col-sm-12">
                                     <!-- Email -->
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" id="email" name="email" class="form-control" required>
+                                        <label for="email" class="form-label">
+                                            Email
+                                        </label>
+                                        <input type="email"
+                                            id="email"
+                                            name="email"
+                                            class="form-control"
+                                            value="{{ old('email') }}"
+                                            required>
                                     </div>
 
                                     <!-- Phone -->
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" id="phone" name="phone" class="form-control">
+                                        <label for="phone" class="form-label">
+                                            Phone
+                                        </label>
+                                        <input type="text"
+                                            id="phone"
+                                            name="phone"
+                                            class="form-control"
+                                            value="{{ old('phone') }}">
+                                    </div>
+
+                                    <!-- Foto Profil -->
+                                    <div class="mb-3">
+                                        <label for="foto_profil" class="form-label">
+                                            Foto Profil
+                                        </label>
+
+                                        <input type="file"
+                                            id="foto_profil"
+                                            name="foto_profil"
+                                            class="form-control"
+                                            accept=".jpg,.jpeg,.png,.webp">
+
+                                        <small class="text-muted">
+                                            JPG, JPEG, PNG, atau WebP. Maksimal 2 MB.
+                                        </small>
+
+                                        @error('foto_profil')
+                                            <div class="text-danger mt-1">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <!-- Buttons -->
-                                    <div class="">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <a href="{{ route('pelanggan.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">
+                                            Simpan
+                                        </button>
+
+                                        <a href="{{ route('pelanggan.index') }}"
+                                        class="btn btn-outline-secondary ms-2">
+                                            Batal
+                                        </a>
                                     </div>
                                 </div>
+
                             </div>
                         </form>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
             <div class="row">

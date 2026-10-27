@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pelanggan extends Model
 {
-    protected $table      = 'pelanggan';
+    protected $table      = 'biodata_1102';
     protected $primaryKey = 'pelanggan_id';
     protected $fillable   = [
         'first_name',
@@ -15,5 +15,6 @@ class Pelanggan extends Model
         'gender',
         'email',
         'phone',
+        'foto_profil'
     ];
 }
