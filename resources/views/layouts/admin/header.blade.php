@@ -24,6 +24,7 @@
                     </div>
                     <!-- Navbar links -->
                     <ul class="navbar-nav align-items-center">
+                        @if(Auth::check())
                         <li class="nav-item dropdown">
                             <a class="nav-link text-dark notification-bell unread dropdown-toggle"
                                 data-unread-notifications="true" href="#" role="button"
@@ -163,6 +164,9 @@
                                 </a>
                             </div>
                         </li>
+                         @else
+                            <a class="btn btn-primary" href="{{ route('auth.login') }}">Login</a>
+                        @endif
                     </ul>
                 </div>
             </div>
